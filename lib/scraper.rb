@@ -3,10 +3,25 @@ require 'pry'
 
 class Scraper
 
+<<<<<<< HEADL
   def self.scrape_index_page(index_url)
     html = Nokogiri::HTML(open(index_url))
     students = html.css(".student-card a")
     students.collect do |element|
+=======
+attr_accessor :html  
+
+  def get_page(index_url)
+    html = Nokogiri::HTML(open('https://learn-co-curriculum.github.io/student-scraper-test-page/'))
+  end
+  
+  def get_students
+    students = self.get_page.css(".student-card a")
+  end
+    
+  def self.scrape_index_page
+    self.get_students.collect do |element|
+>>>>>>> e4e4a4b28236c73598b392b08d295fdbee99d13c
       {:name => element.css(".student-name").text ,
         :location => element.css(".student-location").text,
         :profile_url => element.attr('href')
